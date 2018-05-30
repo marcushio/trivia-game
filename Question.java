@@ -2,7 +2,7 @@ import java.util.*;
 public class Question{
     private String answer;
     private HashMap distractors;
-    Question(){
+    public Question(){
         
     }
     public boolean checkAnswer(String answer){
