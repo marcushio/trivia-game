@@ -53,7 +53,7 @@ public class Game
         
         while(running){
             currentQuestion = getQuestion(); 
-            if(currentQuestion.checkAnswer(getPlayerAnswer())){
+            if(currentQuestion.isAnswer(getPlayerAnswer())){
                 player.addPoints(1); 
             } else player.loseLife(); 
         }
