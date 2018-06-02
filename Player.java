@@ -17,23 +17,23 @@ public class Player
         lives = 0; 
     }
     
-    private int getScore(){
+    public int getScore(){
         return score; 
     }
     
-    private int getLives(){
+    public int getLives(){
         return score; 
     }
     
-    private String getName(){
+    public String getName(){
         return name; 
     }
     
-    private void addPoints(int points){
+    public void addPoints(int points){
         score += points; 
     }
     
-    private void loseLife(){
+    public void loseLife(){
         lives -= 1; 
     }
     
