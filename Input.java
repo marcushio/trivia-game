@@ -4,6 +4,7 @@ import java.util.Scanner;
  */
 public class Input
 {
+    String ANSWER_FORMAT = "a|b|c";
     Scanner userInput;
     public Input(){
     try{
@@ -15,10 +16,12 @@ public class Input
 }
     public String getAnswer(){
      try{
-         return userInput.next();
+         System.out.println("Enter your selection from the options above.");
+         return userInput.next(ANSWER_FORMAT);
         }
      catch(Exception ex){
-         return "";
+         userInput.next();
+         return getAnswer();
         }
     }
     public void close(){
