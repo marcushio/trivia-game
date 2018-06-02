@@ -2,11 +2,13 @@ import java.util.*;
 public class Question{
     private String question; 
     private String answer;
+
     private HashMap<String, String> choices = new HashMap<>();
     Question(String question, String answer, String distractor1, String distractor2){
         this.question=question;
         this.answer=answer;
         setChoices(answer, distractor1,distractor2);
+
     }
     public boolean isAnswer(String answer){
         return this.answer==answer;
