@@ -21,6 +21,9 @@ public class Question{
     }
     private void setChoices(String answer, String distractor1, String distractor2){
         ArrayList<String> data = new ArrayList<>();
+        data.add(answer);
+        data.add(distractor1);
+        data.add(distractor2);
         Random generator = new Random();
         choices.put("a",data.remove(generator.nextInt(data.size())));
         choices.put("b", data.remove(generator.nextInt(data.size())));
