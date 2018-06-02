@@ -17,7 +17,7 @@ public class Question{
         while(entries.hasNext()){
             options+=entries.next()+System.lineSeparator();
         }
-        return question+options;
+        return question+System.lineSeparator()+options.replaceAll("=","  ");
     }
     private void setChoices(String answer, String distractor1, String distractor2){
         ArrayList<String> data = new ArrayList<>();
@@ -28,5 +28,9 @@ public class Question{
         choices.put("a",data.remove(generator.nextInt(data.size())));
         choices.put("b", data.remove(generator.nextInt(data.size())));
         choices.put("c", data.remove(generator.nextInt(data.size())));
+    }
+    public static void test(){
+        Question question = new Question("Is the sky blue?", "yes", "no", "idk");
+        System.out.print(question);
     }
 }
