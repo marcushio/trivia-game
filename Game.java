@@ -56,6 +56,7 @@ public class Game
             if(currentQuestion.checkAnswer(getPlayerAnswer())){
                 player.addPoints(1); 
             } else player.loseLife(); 
+            if(player.lives = 0) running = false; 
         }
     }
 }
