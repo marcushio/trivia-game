@@ -23,7 +23,7 @@ public class Game
     }
     
     private Question getQuestion(){
-        int questionNum; 
+        int questionNum = 0; 
         if(questions.size() != 0){
            questionNum = randomGenerator.nextInt(questions.size()+1); 
         } else System.out.println("We haven't made any questions yet"); 
