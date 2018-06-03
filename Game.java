@@ -11,8 +11,9 @@ public class Game
     Player player; 
     ArrayList<Question> questions; 
     Random randomGenerator; 
-    
+    QuestionFactory factory;
     public Game(){
+        questions = factory.getQuestions();
         input = new Input(); 
         player = new Player("Player1"); 
         fillQuestions(); 
