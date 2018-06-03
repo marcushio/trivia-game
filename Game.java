@@ -44,7 +44,7 @@ public class Game
         
         while(running){
             currentQuestion = getQuestion(); 
-            if(currentQuestion.isAnswer(input.getAnswer())){
+            if(currentQuestion.isAnswer(input.getAnswer(currentQuestion.toString()))){
                 player.addPoints(1); 
             } else player.loseLife(); 
             if(player.lives == 0) running = false; 

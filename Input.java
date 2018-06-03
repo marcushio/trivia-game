@@ -15,14 +15,14 @@ public class Input
         }
     }
 
-    public String getAnswer(){
+    public String getAnswer(String question){
         try{
-            System.out.println("Enter your selection from the options above.");
+            System.out.println(question+"Enter your selection from the options above.");
             return userInput.next(ANSWER_FORMAT);
         }
         catch(Exception ex){
             userInput.next();
-            return getAnswer();
+            return getAnswer("Invalid input. Enter a letter listed above.");
         }
     }
 
