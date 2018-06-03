@@ -10,23 +10,20 @@ public class Game
     Input input; 
     Player player; 
     ArrayList<Question> questions; 
-    Random randomGenerator; 
+    Random randomGenerator = new Random(); 
     QuestionFactory factory = new QuestionFactory();
     public Game(){
         questions = factory.getQuestions();
         input = new Input(); 
         player = new Player("Player1"); 
-        fillQuestions(); 
     }
     
-    private void fillQuestions(){
-        questions = new ArrayList<Question>(); 
-    }
+
     
     private Question getQuestion(){
         int questionNum = 0; 
         if(questions.size() != 0){
-           questionNum = randomGenerator.nextInt(questions.size()+1); 
+           questionNum = randomGenerator.nextInt(questions.size()); 
         } else System.out.println("We haven't made any questions yet"); 
         return questions.get(questionNum); 
     }
@@ -42,13 +39,7 @@ public class Game
         return "player1";
     }
     
-    private String getPlayerAnswer(){
-        System.out.println("What is your final answer: "); 
-        //input method for getting answer
-        String answer = " "; 
-        return answer; 
-    }
-    
+
     public void play(){
         Question currentQuestion; 
         printWelcome(); 
@@ -57,7 +48,7 @@ public class Game
         
         while(running){
             currentQuestion = getQuestion(); 
-            if(currentQuestion.isAnswer(getPlayerAnswer())){
+            if(currentQuestion.isAnswer(input.getAnswer())){
                 player.addPoints(1); 
             } else player.loseLife(); 
             if(player.lives == 0) running = false; 
