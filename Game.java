@@ -33,17 +33,13 @@ public class Game
                       System.lineSeparator() + "keep answering questions correctly to rack up the points");
     }
     
-    private String getPlayerName(){
-        System.out.println("What is your name player?"); 
-        //add input method to get player name
-        return "player1";
-    }
+  
     
 
     public void play(){
         Question currentQuestion; 
         printWelcome(); 
-        getPlayerName(); 
+        player = new Player(input.getName()); 
         boolean running = true; 
         
         while(running){
