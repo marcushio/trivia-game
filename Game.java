@@ -15,33 +15,29 @@ public class Game
     public Game(){
         questions = factory.getQuestions();
         input = new Input(); 
-        player = new Player("Player1"); 
     }
-    
 
     
     private Question getQuestion(){
         int questionNum = 0; 
         if(questions.size() != 0){
-           questionNum = randomGenerator.nextInt(questions.size()); 
+            questionNum = randomGenerator.nextInt(questions.size()); 
         } else System.out.println("We haven't made any questions yet"); 
         return questions.get(questionNum); 
     }
-    
-    private void printWelcome(){
-      System.out.println("Welcome to Trivia!!! You have three lives. A wrong answer costs a life!" + 
-                      System.lineSeparator() + "keep answering questions correctly to rack up the points");
-    }
-    
-  
-    
 
+    private void printWelcome(){
+        System.out.println("Welcome to Trivia!!! You have three lives. A wrong answer costs a life!" + 
+            System.lineSeparator() + "keep answering questions correctly to rack up the points");
+    }
+
+    
     public void play(){
         Question currentQuestion; 
         printWelcome(); 
         player = new Player(input.getName()); 
         boolean running = true; 
-        
+
         while(running){
             currentQuestion = getQuestion(); 
             if(currentQuestion.isAnswer(input.getAnswer(currentQuestion.toString()))){
@@ -49,5 +45,9 @@ public class Game
             } else player.loseLife(); 
             if(player.getLives() == 0) running = false; 
         }
+        String playAgain = input.getAnswer("Game Over! Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
+        if (playAgain.equals("a"))play();
+        else System.out.println("Ok. Thanks for playing!");
+      
     }
 }
