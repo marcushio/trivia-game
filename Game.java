@@ -1,6 +1,6 @@
 
 /**
- * @author Marcus Trujillo
+ * @author Marcus Trujillo and Colton Trujillo
  * Description of program if main/ class otherwise 
  */
 import java.util.*; 
@@ -47,7 +47,7 @@ public class Game
             if(currentQuestion.isAnswer(input.getAnswer(currentQuestion.toString()))){
                 player.addPoints(1); 
             } else player.loseLife(); 
-            if(player.lives == 0) running = false; 
+            if(player.getLives() == 0) running = false; 
         }
     }
 }

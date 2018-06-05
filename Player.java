@@ -14,7 +14,7 @@ public class Player
     public Player(String name){
         this.name = name; 
         score = 0; 
-        lives = 0; 
+        lives = 3; 
     }
     
     public int getScore(){
@@ -22,7 +22,7 @@ public class Player
     }
     
     public int getLives(){
-        return score; 
+        return lives; 
     }
     
     public String getName(){
