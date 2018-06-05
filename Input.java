@@ -17,7 +17,7 @@ public class Input
 
     public String getAnswer(String question){
         try{
-            System.out.println(question+"Enter your selection from the options above.");
+            System.out.println(question+System.lineSeparator()+"Enter your selection from the options above.");
             return userInput.next(ANSWER_FORMAT);
         }
         catch(Exception ex){
