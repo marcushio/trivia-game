@@ -10,7 +10,8 @@ public class Game
 {
     Input input; 
     Player player; 
-    ArrayList<Question> questions; 
+    final int STARTING_LIVES = 3;
+    ArrayList<Question> questions;
     Random randomGenerator = new Random(); 
     QuestionFactory factory = new QuestionFactory();
     public Game(){
@@ -28,7 +29,7 @@ public class Game
     }
 
     private void printWelcome(){
-        System.out.println("Welcome to Trivia!!! You have three lives. A wrong answer costs a life!" + 
+        System.out.println("Welcome to Trivia!!! You have "+STARTING_LIVES+" lives. A wrong answer costs a life!" + 
             System.lineSeparator() + "keep answering questions correctly to rack up the points");
     }
 
