@@ -42,7 +42,12 @@ public class Game
             currentQuestion = getQuestion(); 
             if(currentQuestion.isAnswer(input.getAnswer(currentQuestion.toString()))){
                 player.addPoints(1); 
-            } else player.loseLife(); 
+                System.out.println("Correct! "+player.toString()+"'s score is now: "+player.getScore());
+            } else {
+                player.loseLife(); 
+                System.out.println("Wrong! You just lost a life! You have "+player.getLives()+"left");
+          
+            }
             if(player.getLives() == 0) running = false; 
         }
         String playAgain = input.getAnswer("Game Over! Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
