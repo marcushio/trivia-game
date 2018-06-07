@@ -10,8 +10,8 @@ public class Question{
         setChoices(answer, distractor1,distractor2);
 
     }
-    public boolean isAnswer(String answer){
-        return this.answerLetter==answer;
+    public boolean hasAnswer(String answer){
+        return this.answerLetter.equals(answer);
     }
     public String toString(){
         String options = "";
