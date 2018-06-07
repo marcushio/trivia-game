@@ -22,7 +22,7 @@ public class Input
         }
         catch(Exception ex){
             userInput.next();
-            return getAnswer("Invalid input. Enter a letter listed above.");
+            return getAnswer("Invalid input.");
         }
     }
 
