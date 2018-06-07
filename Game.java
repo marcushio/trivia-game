@@ -40,7 +40,7 @@ public class Game
 
         while(running){
             currentQuestion = getQuestion(); 
-            if(currentQuestion.isAnswer(input.getAnswer(currentQuestion.toString()))){
+            if(currentQuestion.hasAnswer(input.getAnswer(currentQuestion.toString()))){
                 player.addPoints(1); 
                 System.out.println("Correct! "+player.toString()+"'s score is now: "+player.getScore());
             } else {
