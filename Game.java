@@ -1,7 +1,8 @@
 
 /**
+ * Class responsible for holding all objects related to game and calling their methods.
  * @author Marcus Trujillo and Colton Trujillo
- * Description of program if main/ class otherwise 
+ * @version 7.7.18
  */
 import java.util.*; 
 
