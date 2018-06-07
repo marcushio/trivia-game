@@ -51,7 +51,7 @@ public class Game
             if(player.getLives() == 0) running = false; 
         }
         String playAgain = input.getAnswer("Game Over! Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
-        if (playAgain.equals("a"))play();
+        if (playAgain.contains("a"))play();
         else System.out.println("Ok. Thanks for playing!");
       
     }
