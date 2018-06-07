@@ -42,10 +42,10 @@ public class Game
             currentQuestion = getQuestion(); 
             if(currentQuestion.hasAnswer(input.getAnswer(currentQuestion.toString()))){
                 player.addPoints(1); 
-                System.out.println("Correct! "+player.toString()+"'s score is now: "+player.getScore());
+                System.out.println("Correct! "+player.getName()+"'s score is now: "+player.getScore());
             } else {
                 player.loseLife(); 
-                System.out.println("Wrong! You just lost a life! You have "+player.getLives()+"left");
+                System.out.println("Wrong! You just lost a life! You have "+player.getLives()+" left");
           
             }
             if(player.getLives() == 0) running = false; 
