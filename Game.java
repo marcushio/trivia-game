@@ -24,7 +24,7 @@ public class Game
         int questionNum = 0; 
         if(questions.size() != 0){
             questionNum = randomGenerator.nextInt(questions.size()); 
-        } else System.out.println("We haven't made any questions yet"); 
+        } else System.out.println("There are no questions left to answer."); 
         return questions.get(questionNum); 
     }
 
