@@ -9,29 +9,35 @@ import java.util.*;
 public class Game
 {
     boolean running;
-    Input input; 
+    Input input = new Input(); 
     final int POINTS_TO_WIN = 3;
     final int STARTING_LIVES = 3;
-    ArrayList<Player> players;
+    Player player;
+    int numPlayers; 
+    ArrayList<Player> players = new ArrayList<Player>(); 
     ArrayList<Question> questions;
     QuestionSet questionSet;
     QuestionFactory factory = new QuestionFactory();
-    public Game(){
-        players = new ArrayList <Player>();
-        players.add(new Player("Marcus"));
-        players.add(new Player("Colton"));
-        input = new Input(); 
-    }
 
     private void printWelcome(){
-        System.out.println("Welcome to Trivia!!! You have "+STARTING_LIVES+" lives. A wrong answer costs a life!" + 
-            System.lineSeparator() + "keep answering questions correctly to rack up the points");
+        System.out.println("--== Welcome to Trivia!!! ==--" + System.lineSeparator() + 
+                            "Answer questions correctly to rack up the points!"); 
     }
-
-    public void play(){
+    private void initialize(){
         questionSet = factory.getQuestionSet();
         printWelcome(); 
         running = true; 
+        running = true; 
+        players = new ArrayList <Player>();
+        numPlayers = Integer.parseInt(input.getNumPlayers()); 
+    }
+    public void play(){
+        initialize();
+        for(int i = 0; i < numPlayers; i++){
+            String currentPlayerName = input.getName(); 
+            player = new Player(currentPlayerName); 
+            players.add(player); 
+        } 
 
         while(running){
             for(Player player : players){
@@ -58,7 +64,6 @@ public class Game
         System.out.println("Game Over! Final scores are: "+getScores());
         String playAgain = input.getAnswer("Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
         if (playAgain.contains("a")){
-            this = new Game();
             this.play();
         }
         else System.out.println("Ok. Thanks for playing!");

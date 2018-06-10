@@ -31,12 +31,20 @@ public class Input
             System.out.println("What is your name player?"); 
             return userInput.next();
         }
-
         catch(Exception ex){
             return getName();
         }
     }
 
+    public String getNumPlayers(){
+        try{
+            System.out.println("How many players are playing player?"); 
+            return userInput.next(); 
+        } catch(Exception ex){
+            return getNumPlayers(); 
+        }
+    }
+    
     public void close(){
         userInput.close();
     }
