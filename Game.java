@@ -12,8 +12,8 @@ public class Game
 
     boolean running;
     Input input = new Input(); 
-    final int POINTS_TO_WIN = 3;
-    final int STARTING_LIVES = 3;
+    int POINTS_TO_WIN = 3;
+    int STARTING_LIVES = 3;
     Player player;
     int numPlayers; 
     ArrayList<Player> players = new ArrayList<Player>(); 
@@ -28,6 +28,7 @@ public class Game
         running = true; 
         players = new ArrayList <Player>();
         numPlayers = input.getNumPlayers(); 
+        if (numPlayers>1) POINTS_TO_WIN = input.getPointsToWin();
     }
 
     public void play(){
@@ -63,7 +64,7 @@ public class Game
 
         }
         input.printGameOver();
-
+        input.printResult(getResult());
         input.printScores(getScores());
         String playAgain = input.getAnswer("Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
         if (playAgain.contains("a")){
@@ -98,13 +99,15 @@ public class Game
     private void endGame(){
         if (players.size()==1) {
             if(players.get(0).getLives() == 0) {
-            running = false; 
-            input.printDeath();
-        }
+                running = false; 
+                input.printDeath();
+            }
         }
         else for (Player player : players){
-                if (player.getScore() == POINTS_TO_WIN) running = false;
-                input.printResult(getResult());
+                if (player.getScore() == POINTS_TO_WIN) 
+                {running = false;
+       
+            }
             }
     }
 }

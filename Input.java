@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Input
 {
     String WELCOME = "--== Welcome to Trivia!!! ==--" + System.lineSeparator() + "Answer questions correctly to rack up the points!";
-        String NUM_PLAYERS_PROMPT = "";
+    String NUM_PLAYERS_PROMPT = "";
     String ANSWER_FORMAT = "a|b|c";
     Scanner userInput;
     public Input(){
@@ -49,38 +49,60 @@ public class Input
             return getNumPlayers(); 
         }
     }
-    
+
     public void printWelcome(){
-          System.out.println(WELCOME); 
+        System.out.println(WELCOME); 
     }
+
     public void close(){
         userInput.close();
     }
+
     public void printCorrect(String name,int score){
-     System.out.println("Correct! "+name+"'s score is now: "+score);   
+        System.out.println("Correct! "+name+"'s score is now: "+score);   
     }
+
     public void printWrong(String name, int lives){
-      System.out.println("Wrong! "+name+ " just lost a life and has "+lives+" left."); 
+        System.out.println("Wrong! "+name+ " just lost a life and has "+lives+" left."); 
     }
+
     public void printOutOfQuestions (){
         System.out.println("Out of questions...");
     }
+
     public void printGameOver(){
         System.out.println("Game Over!");
     }
+
     public void printScores(String scores){
-    System.out.println("Final scores are: "+scores);
-}
+        System.out.println("Final scores are: "+scores);
+    }
+
     public void printQuitMessage(){
         System.out.println("Ok. Thanks for playing!");
     }
+
     public void printResult(String result){
         System.out.println(result);
     }
+
     public void printTie(){
         System.out.println("Tie game!");
     }
+
     public void printDeath(){
-     System.out.println("You lost all your lives and are DEAD.");   
+        System.out.println("You lost all your lives and are DEAD.");   
+    }
+
+    public int getPointsToWin(){
+        System.out.println("How many points would you like to play to?");
+        try{
+        return userInput.nextInt();
+    }
+    catch(Exception ex){
+        System.out.println("Invalid input. Please enter a number.");
+        return getPointsToWin();
+    }
     }
 }
+
