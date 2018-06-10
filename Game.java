@@ -8,13 +8,18 @@ import java.util.*;
 
 public class Game
 {
+    boolean running;
     Input input; 
-    Player player; 
+    final int POINTS_TO_WIN = 3;
     final int STARTING_LIVES = 3;
+    ArrayList<Player> players;
     ArrayList<Question> questions;
     QuestionSet questionSet;
     QuestionFactory factory = new QuestionFactory();
     public Game(){
+        players = new ArrayList <Player>();
+        players.add(new Player("Marcus"));
+        players.add(new Player("Colton"));
         input = new Input(); 
     }
 
@@ -23,35 +28,52 @@ public class Game
             System.lineSeparator() + "keep answering questions correctly to rack up the points");
     }
 
-    
     public void play(){
         questionSet = factory.getQuestionSet();
         printWelcome(); 
-        player = new Player(input.getName()); 
-        boolean running = true; 
+        running = true; 
 
         while(running){
-            try{
-            Question currentQuestion = questionSet.getQuestion(); 
-                   if(currentQuestion.hasAnswer(input.getAnswer(currentQuestion.toString()))){
-                player.addPoints(1); 
-                System.out.println("Correct! "+player.getName()+"'s score is now: "+player.getScore());
-            } else {
-                player.loseLife(); 
-                System.out.println("Wrong! You just lost a life! You have "+player.getLives()+" left");
-          
+            for(Player player : players){
+                try{
+                    Question currentQuestion = questionSet.getQuestion(); 
+                    if(currentQuestion.hasAnswer(input.getAnswer(player.getName()+", "+currentQuestion.toString()))){
+                        player.addPoints(1); 
+                        System.out.println("Correct! "+player.getName()+"'s score is now: "+player.getScore());
+                    } else {
+                        player.loseLife(); 
+                        System.out.println("Wrong! You just lost a life! You have "+player.getLives()+" left");
+
+                    }
+
+                }
+                catch(Exception ex){
+                    System.out.println("Out of questions");
+                    running = false;
+                }
             }
+            endGame();
+
         }
-        catch(Exception ex){
-            System.out.println("Out of questions");
-            running = false;
-        }
-     
-            if(player.getLives() == 0) running = false; 
-        }
-        String playAgain = input.getAnswer("Game Over! Final score is "+player.getScore()+". Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
+        System.out.println("Game Over! Final scores are: "+getScores());
+        String playAgain = input.getAnswer("Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
         if (playAgain.contains("a"))play();
         else System.out.println("Ok. Thanks for playing!");
-      
+
+    }
+
+    private String getScores(){
+        String scores = "";
+        for (Player player : players){
+            scores+=System.lineSeparator()+player.getName()+": "+player.getScore()+System.lineSeparator();
+        }
+        return scores;
+    }
+
+    private void endGame(){
+        if (players.size()==1) {if(players.get(0).getLives() == 0) running = false; }
+        else for (Player player : players){
+                if (player.getScore() == POINTS_TO_WIN) running = false;
+            }
     }
 }
