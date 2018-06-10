@@ -3,16 +3,20 @@ public class Question{
     private String question; 
     private String answer;
     private String answerLetter;
+    List<String> distractorList;
     private HashMap<String, String> choices = new HashMap<>();
-    Question(String question, String answer, String distractor1, String distractor2){
+    Question(String question, String answer, String [] distractors){
         this.question=question;
         this.answer=answer;
-        setChoices(answer, distractor1,distractor2);
+        distractorList = Arrays.asList(distractors);
+        setChoices();
 
     }
+
     public boolean hasAnswer(String answer){
         return this.answerLetter.equals(answer);
     }
+
     public String toString(){
         String options = "";
         Iterator entries = choices.entrySet().iterator();
@@ -21,19 +25,25 @@ public class Question{
         }
         return question+System.lineSeparator()+options.replaceAll("=","  ");
     }
-    private void setChoices(String answer, String distractor1, String distractor2){
+
+    private void setChoices(){
         ArrayList<String> letters = new ArrayList<>();
-        letters.add("a");
-        letters.add("b");
-        letters.add("c");
+        char letter = 'a';
+        for(int i = 0; i<distractorList.size()+1;i++){
+            letters.add(String.valueOf(letter));
+            letter++;
+        }
         Random generator = new Random();
         answerLetter = letters.remove(generator.nextInt(letters.size()));
         choices.put(answerLetter,answer);
-        choices.put(letters.remove(generator.nextInt(letters.size())), distractor1);
-        choices.put(letters.remove(generator.nextInt(letters.size())),distractor2);
+       for(String distractor : distractorList){
+           choices.put(letters.remove(generator.nextInt(letters.size())), distractor);
+        }
+
     }
     public static void test(){
-        Question question = new Question("Is the sky blue?", "yes", "no", "idk");
+        String[] distractors = {"no","idk"};
+        Question question = new Question("Is the sky blue?", "yes", distractors);
         System.out.print(question);
     }
 }
