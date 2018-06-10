@@ -62,9 +62,9 @@ public class Game
             }
 
         }
-
-        input.printScores(getScores());
+        input.printGameOver();
         input.printResult(getResult());
+        input.printScores(getScores());
         String playAgain = input.getAnswer("Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
         if (playAgain.contains("a")){
             this.play();

@@ -63,10 +63,13 @@ public class Input
       System.out.println("Wrong! "+name+ " just lost a life and has "+lives+" left."); 
     }
     public void printOutOfQuestions (){
-        System.out.println("Out of questions");
+        System.out.println("Game Over! Out of questions");
+    }
+    public void printGameOver(){
+        System.out.println("Game Over!");
     }
     public void printScores(String scores){
-    System.out.println("Game Over! Final scores are: "+scores);
+    System.out.println("Final scores are: "+scores);
 }
     public void printQuitMessage(){
         System.out.println("Ok. Thanks for playing!");
