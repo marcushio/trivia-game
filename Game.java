@@ -11,23 +11,27 @@ public class Game
     Input input; 
     Player player; 
     final int STARTING_LIVES = 3;
+    int numPlayers; 
     ArrayList<Question> questions;
     QuestionSet questionSet;
     QuestionFactory factory = new QuestionFactory();
+    
     public Game(){
         input = new Input(); 
     }
 
     private void printWelcome(){
-        System.out.println("Welcome to Trivia!!! You have "+STARTING_LIVES+" lives. A wrong answer costs a life!" + 
-            System.lineSeparator() + "keep answering questions correctly to rack up the points");
+        System.out.println("--== Welcome to Trivia!!! ==--" + System.lineSeparator() + 
+                            "Answer questions correctly to rack up the points!"); 
     }
 
     
     public void play(){
         questionSet = factory.getQuestionSet();
         printWelcome(); 
+        numPlayers = Integer.parseInt(input.getNumPlayers()); 
         player = new Player(input.getName()); 
+        
         boolean running = true; 
 
         while(running){
