@@ -9,9 +9,10 @@ import java.util.*;
 public class Game
 {
     Input input; 
-    Player player; 
+    Player player;
     final int STARTING_LIVES = 3;
     int numPlayers; 
+    ArrayList<Player> players = new ArrayList<Player>(); 
     ArrayList<Question> questions;
     QuestionSet questionSet;
     QuestionFactory factory = new QuestionFactory();
@@ -29,7 +30,12 @@ public class Game
         questionSet = factory.getQuestionSet();
         printWelcome(); 
         numPlayers = Integer.parseInt(input.getNumPlayers()); 
-        player = new Player(input.getName()); 
+        for(int i = 0; i < numPlayers; i++){
+            String currentPlayerName = input.getName(); 
+            player = new Player(currentPlayerName); 
+            players.add(player); 
+        } 
+        
         
         boolean running = true; 
 
