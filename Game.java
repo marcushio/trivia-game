@@ -34,6 +34,7 @@ public class Game
     public void play(){
         initialize();
         for(int i = 0; i < numPlayers; i++){
+            System.out.print("Aight player" + Integer.toString(i+1) + " "); 
             String currentPlayerName = input.getName(); 
             player = new Player(currentPlayerName); 
             players.add(player); 
