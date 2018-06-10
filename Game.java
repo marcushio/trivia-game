@@ -24,7 +24,6 @@ public class Game
         System.out.println("--== Welcome to Trivia!!! ==--" + System.lineSeparator() + 
                             "Answer questions correctly to rack up the points!"); 
     }
-
     
     public void play(){
         questionSet = factory.getQuestionSet();
