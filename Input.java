@@ -63,7 +63,7 @@ public class Input
       System.out.println("Wrong! "+name+ " just lost a life and has "+lives+" left."); 
     }
     public void printOutOfQuestions (){
-        System.out.println("Game Over! Out of questions");
+        System.out.println("Out of questions...");
     }
     public void printGameOver(){
         System.out.println("Game Over!");
@@ -79,5 +79,8 @@ public class Input
     }
     public void printTie(){
         System.out.println("Tie game!");
+    }
+    public void printDeath(){
+     System.out.println("You lost all your lives and are DEAD.");   
     }
 }

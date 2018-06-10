@@ -63,7 +63,7 @@ public class Game
 
         }
         input.printGameOver();
-        input.printResult(getResult());
+
         input.printScores(getScores());
         String playAgain = input.getAnswer("Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
         if (playAgain.contains("a")){
@@ -96,9 +96,15 @@ public class Game
     }
 
     private void endGame(){
-        if (players.size()==1) {if(players.get(0).getLives() == 0) running = false; }
+        if (players.size()==1) {
+            if(players.get(0).getLives() == 0) {
+            running = false; 
+            input.printDeath();
+        }
+        }
         else for (Player player : players){
                 if (player.getScore() == POINTS_TO_WIN) running = false;
+                input.printResult(getResult());
             }
     }
 }
