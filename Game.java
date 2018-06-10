@@ -27,7 +27,7 @@ public class Game
         running = true; 
         running = true; 
         players = new ArrayList <Player>();
-        numPlayers = Integer.parseInt(input.getNumPlayers()); 
+        numPlayers = input.getNumPlayers(); 
     }
 
     public void play(){
@@ -40,28 +40,31 @@ public class Game
         } 
 
         while(running){
+            try{
+                for(Player player : players){
 
-            for(Player player : players){
-                try{
                     Question currentQuestion = questionSet.getQuestion(); 
                     if(currentQuestion.hasAnswer(input.getAnswer(player.getName()+", "+currentQuestion.toString()))){
                         player.addPoints(1); 
                         input.printCorrect(player.getName(),player.getScore());
                     } else {
                         player.loseLife(); 
-                       input.printWrong(player.getName(),player.getLives());
+                        input.printWrong(player.getName(),player.getLives());
 
                     }
                     endGame();
                 }
-                catch(Exception ex){
-                    input.printOutOfQuestions();
-                    running = false;
-                }
+
+            }
+            catch(Exception ex){
+                input.printOutOfQuestions();
+                running = false;
             }
 
         }
+
         input.printScores(getScores());
+        input.printResult(getResult());
         String playAgain = input.getAnswer("Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
         if (playAgain.contains("a")){
             this.play();
@@ -76,6 +79,20 @@ public class Game
             scores+=System.lineSeparator()+player.getName()+": "+player.getScore()+System.lineSeparator();
         }
         return scores;
+    }
+
+    private String getResult(){
+        String result = "Tie";
+        int numWinners = 0;
+        int highScore = players.get(0).getScore();
+        for(Player player : players){
+            if (player.getScore()>=highScore) {
+                numWinners++;
+                result = player.getName()+" won!";
+            }
+        }
+        if (numWinners>1) result = "tie";
+        return result;
     }
 
     private void endGame(){
