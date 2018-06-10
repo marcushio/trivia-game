@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 /**
  * Author: Colton Trujillo
  */
@@ -6,6 +7,7 @@ public class Input
 {
     String ANSWER_FORMAT = "a|b|c";
     Scanner userInput;
+    
     public Input(){
         try{
             userInput = new Scanner(System.in);
@@ -15,6 +17,9 @@ public class Input
         }
     }
 
+    /**
+     * @return the answer given by the user. 
+     */
     public String getAnswer(String question){
         try{
             System.out.println(question+System.lineSeparator()+"Enter your selection from the options above.");
@@ -26,6 +31,9 @@ public class Input
         }
     }
 
+    /**
+     * @return the name given by the player. 
+     */
     public String getName(){
         try{
             System.out.println("What is your name player?"); 

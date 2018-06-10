@@ -14,12 +14,16 @@ public class Game
     ArrayList<Question> questions;
     Random randomGenerator = new Random(); 
     QuestionFactory factory = new QuestionFactory();
+    
     public Game(){
         questions = factory.getQuestions();
         input = new Input(); 
     }
 
-    
+    /**
+     * Randomly selects a question from the arraylist
+     * @return question 
+     */
     private Question getQuestion(){
         int questionNum = 0; 
         if(questions.size() != 0){
@@ -33,7 +37,9 @@ public class Game
             System.lineSeparator() + "keep answering questions correctly to rack up the points");
     }
 
-    
+    /**
+     * The primary method that runs the game calling the necessary methods from other places. 
+     */
     public void play(){
         Question currentQuestion; 
         printWelcome(); 
@@ -55,6 +61,5 @@ public class Game
         String playAgain = input.getAnswer("Game Over! You died with a score of: "+player.getScore()+". Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
         if (playAgain.contains("a"))play();
         else System.out.println("Ok. Thanks for playing!");
-      
     }
 }
