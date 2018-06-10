@@ -4,6 +4,8 @@ import java.util.Scanner;
  */
 public class Input
 {
+    String WELCOME = "--== Welcome to Trivia!!! ==--" + System.lineSeparator() + "Answer questions correctly to rack up the points!";
+        String NUM_PLAYERS_PROMPT = "";
     String ANSWER_FORMAT = "a|b|c";
     Scanner userInput;
     public Input(){
@@ -26,13 +28,14 @@ public class Input
         }
     }
 
-    public String getName(){
+    public String getName(int playerNumber){
         try{
+            System.out.print("Aight player "+playerNumber+", "); 
             System.out.println("What is your name player?"); 
             return userInput.next();
         }
         catch(Exception ex){
-            return getName();
+            return getName(playerNumber);
         }
     }
 
@@ -45,7 +48,25 @@ public class Input
         }
     }
     
+    public void printWelcome(){
+          System.out.println(WELCOME); 
+    }
     public void close(){
         userInput.close();
+    }
+    public void printCorrect(String name,int score){
+     System.out.println("Correct! "+name+"'s score is now: "+score);   
+    }
+    public void printWrong(String name, int lives){
+      System.out.println("Wrong! "+name+ " just lost a life and has "+lives+" left."); 
+    }
+    public void printOutOfQuestions (){
+        System.out.println("Out of questions");
+    }
+    public void printScores(String scores){
+    System.out.println("Game Over! Final scores are: "+scores);
+}
+    public void printQuitMessage(){
+        System.out.println("Ok. Thanks for playing!");
     }
 }

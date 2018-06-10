@@ -8,6 +8,8 @@ import java.util.*;
 
 public class Game
 {
+    //String Constants
+
     boolean running;
     Input input = new Input(); 
     final int POINTS_TO_WIN = 3;
@@ -19,56 +21,52 @@ public class Game
     QuestionSet questionSet;
     QuestionFactory factory = new HardCodeQuestionFactory();
 
-    private void printWelcome(){
-        System.out.println("--== Welcome to Trivia!!! ==--" + System.lineSeparator() + 
-                            "Answer questions correctly to rack up the points!"); 
-    }
     private void initialize(){
         questionSet = factory.getQuestionSet();
-        printWelcome(); 
+        input.printWelcome(); 
         running = true; 
         running = true; 
         players = new ArrayList <Player>();
         numPlayers = Integer.parseInt(input.getNumPlayers()); 
     }
+
     public void play(){
         initialize();
         for(int i = 0; i < numPlayers; i++){
-            System.out.print("Aight player" + Integer.toString(i+1) + " "); 
-            String currentPlayerName = input.getName(); 
+
+            String currentPlayerName = input.getName(i+1); 
             player = new Player(currentPlayerName); 
             players.add(player); 
         } 
 
         while(running){
-           
+
             for(Player player : players){
                 try{
                     Question currentQuestion = questionSet.getQuestion(); 
                     if(currentQuestion.hasAnswer(input.getAnswer(player.getName()+", "+currentQuestion.toString()))){
                         player.addPoints(1); 
-                        System.out.println("Correct! "+player.getName()+"'s score is now: "+player.getScore());
+                        input.printCorrect(player.getName(),player.getScore());
                     } else {
                         player.loseLife(); 
-                        System.out.println("Wrong! You just lost a life! You have "+player.getLives()+" left");
-                          
+                       input.printWrong(player.getName(),player.getLives());
+
                     }
                     endGame();
                 }
                 catch(Exception ex){
-                    System.out.println("Out of questions");
+                    input.printOutOfQuestions();
                     running = false;
                 }
             }
-        
 
         }
-        System.out.println("Game Over! Final scores are: "+getScores());
+        input.printScores(getScores());
         String playAgain = input.getAnswer("Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
         if (playAgain.contains("a")){
             this.play();
         }
-        else System.out.println("Ok. Thanks for playing!");
+        else input.printQuitMessage();
 
     }
 
