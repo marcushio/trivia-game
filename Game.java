@@ -41,6 +41,7 @@ public class Game
         } 
 
         while(running){
+           
             for(Player player : players){
                 try{
                     Question currentQuestion = questionSet.getQuestion(); 
@@ -50,16 +51,16 @@ public class Game
                     } else {
                         player.loseLife(); 
                         System.out.println("Wrong! You just lost a life! You have "+player.getLives()+" left");
-
+                          
                     }
-
+                    endGame();
                 }
                 catch(Exception ex){
                     System.out.println("Out of questions");
                     running = false;
                 }
             }
-            endGame();
+        
 
         }
         System.out.println("Game Over! Final scores are: "+getScores());
