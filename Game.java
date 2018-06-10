@@ -57,7 +57,10 @@ public class Game
         }
         System.out.println("Game Over! Final scores are: "+getScores());
         String playAgain = input.getAnswer("Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
-        if (playAgain.contains("a"))play();
+        if (playAgain.contains("a")){
+            this = new Game();
+            this.play();
+        }
         else System.out.println("Ok. Thanks for playing!");
 
     }
