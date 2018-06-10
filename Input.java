@@ -35,15 +35,17 @@ public class Input
             return userInput.next();
         }
         catch(Exception ex){
+
             return getName(playerNumber);
         }
     }
 
-    public String getNumPlayers(){
+    public int getNumPlayers(){
         try{
             System.out.println("How many players are playing player?"); 
-            return userInput.next(); 
+            return userInput.nextInt(); 
         } catch(Exception ex){
+            userInput.next();
             return getNumPlayers(); 
         }
     }
@@ -68,5 +70,11 @@ public class Input
 }
     public void printQuitMessage(){
         System.out.println("Ok. Thanks for playing!");
+    }
+    public void printResult(String result){
+        System.out.println(result);
+    }
+    public void printTie(){
+        System.out.println("Tie game!");
     }
 }
