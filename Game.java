@@ -12,20 +12,10 @@ public class Game
     Player player; 
     final int STARTING_LIVES = 3;
     ArrayList<Question> questions;
-    Random randomGenerator = new Random(); 
+    QuestionSet questionSet;
     QuestionFactory factory = new QuestionFactory();
     public Game(){
-        questions = factory.getQuestions();
         input = new Input(); 
-    }
-
-    
-    private Question getQuestion(){
-        int questionNum = 0; 
-        if(questions.size() != 0){
-            questionNum = randomGenerator.nextInt(questions.size()); 
-        } else System.out.println("There are no questions left to answer."); 
-        return questions.get(questionNum); 
     }
 
     private void printWelcome(){
@@ -35,14 +25,15 @@ public class Game
 
     
     public void play(){
-        Question currentQuestion; 
+        questionSet = factory.getQuestionSet();
         printWelcome(); 
         player = new Player(input.getName()); 
         boolean running = true; 
 
         while(running){
-            currentQuestion = getQuestion(); 
-            if(currentQuestion.hasAnswer(input.getAnswer(currentQuestion.toString()))){
+            try{
+            Question currentQuestion = questionSet.getQuestion(); 
+                   if(currentQuestion.hasAnswer(input.getAnswer(currentQuestion.toString()))){
                 player.addPoints(1); 
                 System.out.println("Correct! "+player.getName()+"'s score is now: "+player.getScore());
             } else {
@@ -50,9 +41,15 @@ public class Game
                 System.out.println("Wrong! You just lost a life! You have "+player.getLives()+" left");
           
             }
+        }
+        catch(Exception ex){
+            System.out.println("Out of questions");
+            running = false;
+        }
+     
             if(player.getLives() == 0) running = false; 
         }
-        String playAgain = input.getAnswer("Game Over! You died with a score of: "+player.getScore()+". Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
+        String playAgain = input.getAnswer("Game Over! Final score is "+player.getScore()+". Would you like to play again?"+System.lineSeparator()+"a yes"+System.lineSeparator()+"b no")+System.lineSeparator();
         if (playAgain.contains("a"))play();
         else System.out.println("Ok. Thanks for playing!");
       
