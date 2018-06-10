@@ -17,7 +17,7 @@ public class Game
     ArrayList<Player> players = new ArrayList<Player>(); 
     ArrayList<Question> questions;
     QuestionSet questionSet;
-    QuestionFactory factory = new QuestionFactory();
+    QuestionFactory factory = new HardCodeQuestionFactory();
 
     private void printWelcome(){
         System.out.println("--== Welcome to Trivia!!! ==--" + System.lineSeparator() + 
